@@ -88,7 +88,8 @@
         <p class="status-tarefa">
           <button
             [ngClass]="(tarefa.statusFinalizado == true) ? 'icone-checked' : 'icone-unchecked'"
-            (click)="finalizarTarefa(tarefa.id);">
+            (click)="finalizarTarefa(tarefa.id)"
+            [@toogleCheckState]="tarefa.id === indexButton ? 'checked' : '*'">
           </button>
         </p>
       </div>

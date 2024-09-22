@@ -9,7 +9,7 @@ export const highlightedStateTrigger = trigger('highlightedState', [
     filter: 'brightness(82%)'
   })),
   transition('default => highlighted', [
-    animate('200ms ease-in-out', style({
+    animate('200ms ease-out', style({
       transform: 'scale(1.02)'
     }))
   ])
@@ -27,6 +27,14 @@ export const showStateTrigger = trigger('showState', [
   transition(':leave', [
     animate(300, style({
       opacity: 0
+    }))
+  ])
+]);
+
+export const toogleCheckStateTrigger = trigger('toogleCheckState', [
+  transition('* => checked', [
+    animate('400ms ease-in', style({
+      transform: 'scale(0.4)'
     }))
   ])
 ]);

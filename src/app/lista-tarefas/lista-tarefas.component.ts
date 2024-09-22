@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-import { highlightedStateTrigger, showStateTrigger, toogleCheckStateTrigger } from '../animations';
+import { filterTrigger, highlightedStateTrigger, showStateTrigger, toogleCheckStateTrigger } from '../animations';
 
 @Component({
   selector: 'app-lista-tarefas',
@@ -12,7 +12,8 @@ import { highlightedStateTrigger, showStateTrigger, toogleCheckStateTrigger } fr
   animations: [
     highlightedStateTrigger,
     showStateTrigger,
-    toogleCheckStateTrigger
+    toogleCheckStateTrigger,
+    filterTrigger
   ]
 })
 export class ListaTarefasComponent implements OnInit {

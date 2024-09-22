@@ -17,11 +17,13 @@ import { highlightedStateTrigger, showStateTrigger, toogleCheckStateTrigger } fr
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
-  formAberto: boolean = false;
-  categoria: string = '';
+  formAberto = false;
+  categoria = '';
+  campoBusca = ''
   validado: boolean = false;
   indexTarefa = -1;
   indexButton = -1;
+  tarefasFiltradas: Array<Tarefa> = [];
 
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
@@ -40,8 +42,23 @@ export class ListaTarefasComponent implements OnInit {
   ngOnInit(): Tarefa[] {
     this.service.listar(this.categoria).subscribe((listaTarefas) => {
       this.listaTarefas = listaTarefas;
+      this.tarefasFiltradas = listaTarefas;
     });
-    return this.listaTarefas;
+
+    return this.tarefasFiltradas;
+  }
+
+
+  filtrarTarefasPorDescricao(descricao: string) {
+    this.campoBusca = descricao.trim().toLowerCase();
+
+    if (descricao)
+      this.tarefasFiltradas = this.listaTarefas.filter(
+        (tarefa) => tarefa.descricao.toLowerCase().includes(this.campoBusca)
+      )
+    else
+      this.tarefasFiltradas = this.listaTarefas;
+
   }
 
   mostrarOuEsconderFormulario() {
@@ -124,7 +141,7 @@ export class ListaTarefasComponent implements OnInit {
 
   listarAposCheck() {
     this.service.listar(this.categoria).subscribe((listaTarefas) => {
-      this.listaTarefas = listaTarefas;
+      this.tarefasFiltradas = listaTarefas;
     });
   }
 
@@ -146,4 +163,5 @@ export class ListaTarefasComponent implements OnInit {
       return 'form-tarefa';
     }
   }
+
 }

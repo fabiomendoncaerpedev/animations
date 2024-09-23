@@ -24,8 +24,15 @@
     {
       "id": 6,
       "descricao": "Ler",
-      "statusFinalizado": true,
+      "statusFinalizado": false,
       "categoria": "Estudos",
+      "prioridade": "Alta"
+    },
+    {
+      "id": 7,
+      "descricao": "teste refatoração",
+      "statusFinalizado": true,
+      "categoria": "Casa",
       "prioridade": "Alta"
     }
   ]

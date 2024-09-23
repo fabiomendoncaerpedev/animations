@@ -1,4 +1,4 @@
-import { animate, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
+import { animate, group, keyframes, query, stagger, state, style, transition, trigger } from '@angular/animations';
 
 export const highlightedStateTrigger = trigger('highlightedState', [
   state('default', style({
@@ -132,7 +132,7 @@ export const semTarefasTrigger = trigger('semTarefasAnimation', [
       }))
     ])
   ])
-])
+]);
 
 export const shakeTrigger = trigger('shakeAnimation',[
   transition('* => *', [
@@ -150,4 +150,30 @@ export const shakeTrigger = trigger('shakeAnimation',[
       ]))
     ], { optional: true })
   ])
-])
+]);
+
+export const listStateTrigger = trigger('listStateAnimation', [
+  transition('* => *', [
+    query(':enter', [
+      style({
+        opacity: 0,
+        transform: 'translateX(-100)'
+      }),
+      stagger(200, [
+        animate('500ms ease-out', keyframes([
+          style({
+            opacity: 1,
+            transform: 'translateX(15%)',
+            offset: 0.4
+          }),
+          style({
+            opacity: 1,
+            transform: 'translateX(0%)',
+            offset: 1
+          })
+        ]))
+      ]),
+    ], { optional: true })
+  ])
+]);
+
